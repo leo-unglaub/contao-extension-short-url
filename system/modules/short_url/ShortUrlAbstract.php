@@ -45,7 +45,7 @@ abstract class ShortUrlAbstract extends Controller
 	 * 
 	 * @var int
 	 */
-	protected $intExpires = 0;
+	public $intExpires = 0;
 
 
 	/**
@@ -54,7 +54,7 @@ abstract class ShortUrlAbstract extends Controller
 	 * @param	string	$strLongUrl		The long url whitch should be shorter
 	 * @return	string					The new short url
 	 */
-	public function getShortUrl($strLongUrl);
+	abstract public function getShortUrl($strLongUrl);
 
 
 	/**
