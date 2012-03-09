@@ -40,7 +40,7 @@ class ShortUrl extends Controller
 	 * @param void
 	 * @return void
 	 */
-	public function __constructor()
+	public function __construct()
 	{
 		$this->import('Database');
 		parent::__construct();
@@ -74,7 +74,7 @@ class ShortUrl extends Controller
 		$objProvider = new $strProvider();
 
 		$strShortUrl = $objProvider->getShortUrl($strLongUrl);
-		$this->addToCache($strShortUrl, $strLongUrl, $objProvider->$intExpires);
+		$this->addToCache($strShortUrl, $strLongUrl, $objProvider->intExpires);
 
 		return $strShortUrl;
 	}
@@ -107,7 +107,7 @@ class ShortUrl extends Controller
 		$objProvider = new $strProvider();
 
 		$strLongUrl = $objProvider->getLongUrl($strShortUrl);
-		$this->addToCache($strShortUrl, $strLongUrl, $objProvider->$intExpires);
+		$this->addToCache($strShortUrl, $strLongUrl, $objProvider->intExpires);
 
 		return $strLongUrl;
 	}
