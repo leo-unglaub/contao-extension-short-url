@@ -63,7 +63,32 @@ abstract class ShortUrlAbstract extends Controller
 	 * @param	string	$strShortUrl	The short url
 	 * @return	string					The long url
 	 */
-	public function getLongUrl($strShortUrl);
+	abstract public function getLongUrl($strShortUrl);
+
+
+	/**
+	 * Handle errors during the request
+	 * 
+	 * @param	Response	$objRequest	The complete request object
+	 * @return	void
+	 */
+	protected function handleErrors(Request $objRequest)
+	{
+		// display errors is on, so we throw an exception
+		if ($GLOBALS['TL_CONFIG']['displayErrors'] === true)
+		{
+			print_r($objRequest);
+
+			throw new Exception('An error occured during the http request');
+			return;
+		}
+
+		// display errors is off, so we log the error just into the backend log file. NOT RECOMMENDET during the development
+		$strMessage = 'Short URL: An error occurred during the http request. The script failed with the error code "%s" and ';
+		$strMessage .= 'the following message "%s". Please enable the display errors option to see the full error message.';
+
+		$this->log(sprintf($strMessage, $objRequest->code, $objRequest->error), 'ShortUrlAbstract handleErrors()', TL_ERROR);
+	}
 }
 
 ?>
