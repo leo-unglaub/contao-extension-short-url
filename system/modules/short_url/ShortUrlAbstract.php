@@ -77,10 +77,11 @@ abstract class ShortUrlAbstract extends Controller
 		// display errors is on, so we throw an exception
 		if ($GLOBALS['TL_CONFIG']['displayErrors'] === true)
 		{
+            echo '<pre>';
 			print_r($objRequest);
+            echo '</pre>';
 
 			throw new Exception('An error occured during the http request');
-			return;
 		}
 
 		// display errors is off, so we log the error just into the backend log file. NOT RECOMMENDET during the development
